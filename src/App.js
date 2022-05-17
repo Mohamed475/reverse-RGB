@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 
 const StyledApp = styled.div`
-  background-color: ${(props) => props.reversedRGB || 'salmon'};
+  background-color: ${(props) => props.reversedRGB || 'rgb(179, 221, 90)'};
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -12,7 +12,7 @@ const StyledApp = styled.div`
   justify-content: center;
 
   button {
-    background-color: ${(props) => props.RGB || 'blue'};
+    background-color: ${(props) => props.RGB || 'rgb(76, 34, 165)'};
     border: 1px solid #000;
     border-radius: 5px;
     padding: 10px;
@@ -24,8 +24,8 @@ const StyledApp = styled.div`
   }
 `;
 function App() {
-  const [RGB, setRGB] = useState('blue');
-  const [reversedRGB, setReversedRGB] = useState('salmon');
+  const [RGB, setRGB] = useState('rgb(179, 221, 90)');
+  const [reversedRGB, setReversedRGB] = useState('rgb(76, 34, 165)');
 
   // Function to reverse rgb
   const reverseRGBHandler = (rgb) => {
@@ -47,8 +47,11 @@ function App() {
 
   const onChangeHandler = (e) => {
     e.preventDefault();
-    setRGB(randomRGBHandler());
-    setReversedRGB(reverseRGBHandler(RGB));
+    const randomRGB = randomRGBHandler();
+    setRGB(randomRGB);
+    setReversedRGB(reverseRGBHandler(randomRGB));
+    console.log(`RGB: ${RGB}`);
+    console.log(`Reversed RGB: ${reversedRGB}`);
   };
 
   return (
